@@ -214,7 +214,7 @@ public class PhotoViewAttacher implements View.OnTouchListener,
                         return true;
                     } else {
                         if (mOutsidePhotoTapListener != null) {
-                            mOutsidePhotoTapListener.onOutsidePhotoTap(mImageView);
+                            mOutsidePhotoTapListener.onOutsidePhotoTap(mImageView,x,y);
                         }
                     }
                 }
