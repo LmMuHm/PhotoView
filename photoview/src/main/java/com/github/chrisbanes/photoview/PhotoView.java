@@ -33,7 +33,6 @@ import androidx.appcompat.widget.AppCompatImageView;
 public class PhotoView extends AppCompatImageView {
 
     private PhotoViewAttacher attacher;
-    private ScaleType pendingScaleType;
 
     public PhotoView(Context context) {
         this(context, null);
@@ -53,11 +52,6 @@ public class PhotoView extends AppCompatImageView {
         //We always pose as a Matrix scale type, though we can change to another scale type
         //via the attacher
         super.setScaleType(ScaleType.MATRIX);
-        //apply the previously applied scale type
-        if (pendingScaleType != null) {
-            setScaleType(pendingScaleType);
-            pendingScaleType = null;
-        }
     }
 
     /**
@@ -93,9 +87,7 @@ public class PhotoView extends AppCompatImageView {
 
     @Override
     public void setScaleType(ScaleType scaleType) {
-        if (attacher == null) {
-            pendingScaleType = scaleType;
-        } else {
+        if (attacher != null) {
             attacher.setScaleType(scaleType);
         }
     }
